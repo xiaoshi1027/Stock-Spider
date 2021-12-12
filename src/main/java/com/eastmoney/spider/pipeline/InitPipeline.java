@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.eastmoney.stock.entity.StockInfo;
 import com.eastmoney.stock.mapper.StockInfoMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,10 +20,9 @@ import javax.annotation.Resource;
  * @Date 2021/12/12 14:36
  * @Version
  **/
+@Slf4j
 @Component
 public class InitPipeline implements Pipeline {
-    private Logger logger = LoggerFactory.getLogger(InitPipeline.class);
-
     @Resource
     private StockInfoMapper stockInfoMapper;
 
@@ -47,7 +47,7 @@ public class InitPipeline implements Pipeline {
                 stockInfo.setMarket(market);
                 stockInfoMapper.insert(stockInfo);
             }
-            logger.info("save StockInfoPipeline to Mysql success! size:{}", size);
+            log.info("save StockInfoPipeline to Mysql success! size:{}", size);
         }
 
     }

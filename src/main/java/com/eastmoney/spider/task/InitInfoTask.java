@@ -1,5 +1,6 @@
 package com.eastmoney.spider.task;
 
+import com.eastmoney.spider.enums.FieldEnum;
 import com.eastmoney.spider.enums.FsEnum;
 import com.eastmoney.spider.enums.UrlEnum;
 import com.eastmoney.spider.model.UrlRequest;
@@ -26,7 +27,7 @@ public class InitInfoTask {
     @Autowired
     private InitPipeline initPipeline;
 
-    @PostConstruct
+//    @PostConstruct
     public void initInfo() {
         /*
         // 查看哪些fs规则中有数据，整理出对自己有用的fs
@@ -47,7 +48,6 @@ public class InitInfoTask {
             initProcessor.setFileName(fileName);
             Spider.create(initProcessor).addUrl(url).run();
         }*/
-
         StringBuffer fs = new StringBuffer();
         fs.append(FsEnum.fs00.getValue()).append(",");
         fs.append(FsEnum.fs30.getValue()).append(",");
@@ -59,7 +59,7 @@ public class InitInfoTask {
                 "f12,f14,f27", new Date().getTime() + "");
         urlRequest.setFs(fs.substring(0, fs.length() - 1));
         urlRequest.setPz(10000);
-        String url = urlRequest.createUrl();
+        String url = urlRequest.createListUrl();
         Spider.create(initProcessor).addUrl(url).addPipeline(initPipeline).run();
     }
 }

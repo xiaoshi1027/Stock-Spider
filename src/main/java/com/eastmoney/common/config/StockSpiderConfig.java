@@ -1,4 +1,4 @@
-package com.eastmoney.stock.config;
+package com.eastmoney.common.config;
 
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;

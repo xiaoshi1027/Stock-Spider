@@ -44,8 +44,28 @@ public class UrlRequest {
     // 取数匹配规则
     private String fs;
 
+    // 指定查找哪个类型哪只代码：market.code
+    private String secid;
+
     // 查找字段 f12,f14
     private String fields = "f12,f14";
+
+    // 首层查询字段 f1为code, f2为market, f3为name
+    private String fields1 = "f1,f2,f3";
+    // 次级查询结果集字段
+    private String fields2;
+
+    //
+    private int klt = 101;
+
+    //
+    private int fqt = 0;
+
+    //
+    private String end = "20500101";
+
+    // 长度限制
+    private int lmt;
 
     // long类型的时间戳
     private String timestamp;
@@ -59,7 +79,7 @@ public class UrlRequest {
         this.timestamp = timestamp;
     }
 
-    public String createUrl() {
+    public String createListUrl() {
         StringBuffer str = new StringBuffer();
         str.append(url).append(QF);
         str.append("cb=").append(cb).append(AF);
@@ -73,6 +93,25 @@ public class UrlRequest {
         str.append("fid=").append(fid).append(AF);
         str.append("fs=").append(fs).append(AF);
         str.append("fields=").append(fields).append(AF);
+        str.append("_=").append(timestamp);
+
+        return str.toString();
+    }
+
+    public String createKlineUrl() {
+        StringBuffer str = new StringBuffer();
+        str.append(url).append(QF);
+        str.append("cb=").append(cb).append(AF);
+        str.append("ut=").append(ut).append(AF);
+        str.append("secid=").append(secid).append(AF);
+        str.append("fields1=").append(fields1).append(AF);
+        str.append("fields2=").append(fields2).append(AF);
+        str.append("fid=").append(fid).append(AF);
+        str.append("fields=").append(fields).append(AF);
+        str.append("klt=").append(klt).append(AF);
+        str.append("fqt=").append(fqt).append(AF);
+        str.append("end=").append(end).append(AF);
+        str.append("lmt=").append(lmt).append(AF);
         str.append("_=").append(timestamp);
 
         return str.toString();
